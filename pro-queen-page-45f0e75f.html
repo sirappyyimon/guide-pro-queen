@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>赏金女王 · 信息整理卡片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f1f3f6;
+            color: #1e2a3a;
+            line-height: 1.65;
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .page-wrapper {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* 主视觉区 – 柔和层次 */
+        .hero-card {
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
+            padding: 2.8rem 2.2rem;
+            margin-bottom: 2.4rem;
+            border: 1px solid #e6eaf0;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .hero-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .hero-title {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #1f2937;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: #4b5a6f;
+            border-left: 4px solid #a3b8d0;
+            padding-left: 1rem;
+            margin-top: 0.4rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .hero-text {
+            font-size: 1rem;
+            max-width: 780px;
+            color: #2d3b4e;
+        }
+
+        .hero-text a {
+            color: #1f4a7a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #b8c9de;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .hero-text a:hover {
+            color: #0b2b4a;
+            border-bottom: 1px solid #1f4a7a;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .info-card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 1.8rem 1.6rem 2rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.02);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.7rem;
+            display: inline-block;
+            background: #edf2f9;
+            padding: 0.2rem 0.6rem;
+            border-radius: 14px;
+            line-height: 1.4;
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e2a3a;
+        }
+
+        .info-card p {
+            font-size: 0.95rem;
+            color: #314153;
+            margin-bottom: 0.4rem;
+        }
+
+        .info-card .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: #eef2f7;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            color: #2b405a;
+            border: 1px solid #d9e1ec;
+        }
+
+        /* 适合人群 + 自然链接段落 (合并卡片) */
+        .hybrid-card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 2rem 2rem 2.2rem;
+            margin-bottom: 2.4rem;
+            border: 1px solid #e4eaf2;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .hybrid-card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #1f2937;
+            letter-spacing: -0.01em;
+        }
+
+        .hybrid-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 3rem;
+        }
+
+        .hybrid-col {
+            flex: 1 1 220px;
+        }
+
+        .hybrid-col h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+            color: #2f4057;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hybrid-col ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .hybrid-col ul li {
+            padding: 0.2rem 0;
+            font-size: 0.95rem;
+            color: #31475f;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .hybrid-col ul li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: #7f95b0;
+            font-weight: 700;
+        }
+
+        .link-paragraph {
+            margin-top: 1.4rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e7edf5;
+            font-size: 0.98rem;
+            color: #2d3b4e;
+        }
+
+        .link-paragraph a {
+            color: #1f4a7a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #b8c9de;
+            transition: border-color 0.15s;
+        }
+
+        .link-paragraph a:hover {
+            border-bottom: 1px solid #1f4a7a;
+            color: #0b2b4a;
+        }
+
+        /* FAQ 摘要 —— 极简卡片 */
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 1.6rem 2rem 2rem;
+            border: 1px solid #e4eaf2;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.02);
+            margin-bottom: 2rem;
+        }
+
+        .faq-mini h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #1f2937;
+        }
+
+        .faq-item {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #edf2f8;
+        }
+
+        .faq-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #253445;
+            font-size: 0.98rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-a {
+            font-size: 0.92rem;
+            color: #3d506a;
+            padding-left: 0.6rem;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6a7f99;
+            padding: 1.6rem 0 0.2rem;
+            border-top: 1px solid #dce4ef;
+            margin-top: 0.4rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.9rem;
+            }
+            .hero-card {
+                padding: 2rem 1.4rem;
+            }
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .hero-sub {
+                font-size: 0.95rem;
+            }
+            .info-card {
+                padding: 1.5rem 1.2rem;
+            }
+            .hybrid-card {
+                padding: 1.6rem 1.2rem;
+            }
+            .faq-mini {
+                padding: 1.4rem 1.2rem;
+            }
+            .card-grid {
+                gap: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- 主视觉卡片 -->
+    <div class="hero-card">
+        <div class="hero-title">赏金女王 · 资料索引</div>
+        <div class="hero-sub">从信息整理的角度，认识一个内容标签</div>
+        <div class="hero-text">
+            <p>「赏金女王」并不是一个单一的概念，它更像是一个被不同社群反复提及、赋予多重含义的关键词。从游戏角色、活动称号，到平台上的主题分类，围绕它的讨论常常带有收集、挑战或策略的色彩。如果你对这类信息感兴趣，不妨先浏览一下已有的整理和索引 —— 比如在 <a href="https://pro-queen.com">赏金女王</a> 这个页面上，可以看到一些基本的方向和脉络。</p>
+        </div>
+    </div>
+
+    <!-- 用途卡片网格 -->
+    <div class="card-grid">
+        <div class="info-card">
+            <div class="card-icon">📋</div>
+            <h3>内容归类</h3>
+            <p>许多站点把「赏金女王」作为专题或合集标签，用于聚合特定风格的角色介绍、活动回顾或社区讨论。适合快速浏览同类信息。</p>
+            <div class="tag-list">
+                <span class="tag">角色档案</span>
+                <span class="tag">活动记录</span>
+                <span class="tag">主题站</span>
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="card-icon">🔍</div>
+            <h3>参考查阅</h3>
+            <p>在做资料整理或背景研究时，这个关键词可能指向某类设定、称号或历史活动。适合作为检索的起点，再进一步筛选。</p>
+            <div class="tag-list">
+                <span class="tag">设定考据</span>
+                <span class="tag">关键词索引</span>
+                <span class="tag">档案</span>
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="card-icon">🧩</div>
+            <h3>兴趣探索</h3>
+            <p>如果你在论坛或社区看到相关讨论，但不确定具体指什么，可以先翻翻整理页，了解常见的几种指向和语境。</p>
+            <div class="tag-list">
+                <span class="tag">社区话题</span>
+                <span class="tag">入门浏览</span>
+                <span class="tag">语境说明</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 适合人群 + 自然链接段落 -->
+    <div class="hybrid-card">
+        <h2>适合人群 &amp; 常见场景</h2>
+        <div class="hybrid-flex">
+            <div class="hybrid-col">
+                <h4>🧑‍💻 资料整理者</h4>
+                <ul>
+                    <li>需要快速归类不同来源的信息</li>
+                    <li>做关键词映射或标签体系时参考</li>
+                    <li>对比不同平台对该主题的表述</li>
+                </ul>
+            </div>
+            <div class="hybrid-col">
+                <h4>👀 兴趣浏览者</h4>
+                <ul>
+                    <li>偶尔看到「赏金女王」想了解大致方向</li>
+                    <li>不想深入考据，只要一个概览</li>
+                    <li>在社区讨论前先看基础信息</li>
+                </ul>
+            </div>
+        </div>
+        <!-- 自然链接段落：将 a 标签嵌入句子 -->
+        <div class="link-paragraph">
+            如果你需要更系统的资料汇总，可以看看 <a href="https://pro-queen.com">赏金女王</a> 这个信息页，它把常见的分支和参考线索放在了一起，适合作为第一站。当然，每个平台的语境略有差异，建议结合具体讨论再深入。
+        </div>
+    </div>
+
+    <!-- FAQ 摘要卡片（轻量） -->
+    <div class="faq-mini">
+        <h2>FAQ 摘要 · 常见疑问</h2>
+        <div class="faq-item">
+            <div class="faq-q">❓ 「赏金女王」一定指某个固定角色吗？</div>
+            <div class="faq-a">不完全是。在不同语境下，它可能指角色称号、活动主题或社区梗。建议先看索引页了解常见指向。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">❓ 这个关键词和游戏关系大吗？</div>
+            <div class="faq-a">确实在游戏讨论中出现频率较高，但也出现在其他兴趣领域。具体上下文很重要。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">❓ 我在哪里可以找到更多讨论？</div>
+            <div class="faq-a">可以在社区、论坛或整理站内搜索该关键词，注意不同平台的分类差异。</div>
+        </div>
+    </div>
+
+    <!-- 底部留白 -->
+    <div class="footer-note">
+        信息卡片式索引 · 内容经由整理与归纳
+    </div>
+</div>
+</body>
+</html>
